@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  backend:
+    container_name: Back
+    build: .
+    env_file:
+      - ./.env
+      - ./.dockerenv
+    ports:
+      - "8000:8000"
+    depends_on:
+      psql:
+        condition: service_healthy
+
+  psql:
+    image: postgres:latest
+    container_name: PSQL
+    user: postgres
+    env_file:
+      - ./.dockerenv
+    ports:
+      - "5432:5432"
+
+    healthcheck:
+      interval: 2s
+      timeout: 2s
+      test: pg_isready

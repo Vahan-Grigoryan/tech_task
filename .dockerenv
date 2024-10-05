@@ -1,0 +1,3 @@
+DB__HOST="psql"
+POSTGRES_DB="tech_task_db"
+POSTGRES_PASSWORD="tumo9305"
